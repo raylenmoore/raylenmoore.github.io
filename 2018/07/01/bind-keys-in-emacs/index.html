@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Emacs快捷键定制方法详解</title><link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/main.css"><link rel="shortcut icon" href="/img/favicon.png"></head><body><header class="base-menu"><div class="menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">益友</a></li><li class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></li><li class="menu-item"><a href="/about" class="menu-link">About</a></li></ul></nav></div></header><header class="base-mobile-menu"><div class="mobile-menu-wrapper"><div class="menu-layout-bg"></div><nav class="menu-content"><ul class="menu-list"><r44 class="menu-item"><a href="/" class="menu-link">益友</a></r44><r44 class="menu-item"><a href="/blog/archives" class="menu-link">Archives</a></r44><r44 class="menu-item"><a href="/about" class="menu-link">About</a></r44></ul></nav><div id="mobile-menu-toggle" class="toggle-menu"><span class="menu-bar"></span><span class="menu-bar"> </span><span class="menu-bar"></span></div></div></header><div class="base-content"><div class="base-content-main"><article class="article-main"><h1 class="article-title">Emacs快捷键定制方法详解</h1><div class="article-meta"><p class="meta-item meta-time"><span class="meta-item-title">发表于: </span>2018-07-01</p><p class="meta-item meta-category"></p></div><div class="article-content"><p>有人把Emacs比做一辆组装车，言下之意它可以按用户的需求定制方方面面，其中之一便是它的快捷键。定制一套简单易记的快捷键，可以极大地发挥出Emacs的优势。本文将完成以下这些常用快捷键的定制：</p>
+<ol>
+<li>Ctrl-c（复制），Ctrl-v（粘贴），还有Ctrl-x（剪切），Ctrl-z（撤销）</li>
+<li>Ctrl-s（保存）</li>
+<li>Ctrl-f（查找），左右方向键查找上一个、下一个</li>
+<li>Ctrl-Tab（切换窗口）</li>
+</ol>
+<p>作为一名Windows系统编辑器的重度用户，我对一些快捷键已根深蒂固，如Ctrl-c是复制，Ctrl-v是粘贴，乍一接触Emacs由于这些熟悉的快捷键集体罢工，导致用Emacs编辑文档效率不升反降，因为所有操作都要用鼠标点击工具栏上按钮才能完成。所以，当务之急，先从定制复制、粘贴这些最常用的操作开始。事实上，这几个键的定制方法很简单：</p>
+<p>选择菜单Options，勾选Use CUA keys。再试一下，发现以下这些熟悉的快捷键一下子都回来了：除了Ctrl-c（复制），Ctrl-v（粘贴），还有Ctrl-x（剪切），Ctrl-z（撤销）</p>
+<p>选择菜单Option，点Save Options，以便下次重新打开Emacs后自动勾选Use CUA keys。打开Emacs<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html" target="_blank" rel="noopener">初始化文件</a>（Windows用户参考<a href="https://www.gnu.org/software/emacs/manual/html_node/efaq-w32/Location-of-init-file.html" target="_blank" rel="noopener">Where do I put my init file?</a>），你会发现多出以下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(custom-set-variables</span><br><span class="line"> ;; custom-set-variables was added by Custom.</span><br><span class="line"> ;; If you edit it by hand, you could mess it up, so be careful.</span><br><span class="line"> ;; Your init file should contain only one such instance.</span><br><span class="line"> ;; If there is more than one, they won&apos;t work right.</span><br><span class="line"> &apos;(cua-mode t nil (cua-base)))</span><br><span class="line">(custom-set-faces</span><br><span class="line"> ;; custom-set-faces was added by Custom.</span><br><span class="line"> ;; If you edit it by hand, you could mess it up, so be careful.</span><br><span class="line"> ;; Your init file should contain only one such instance.</span><br><span class="line"> ;; If there is more than one, they won&apos;t work right.</span><br><span class="line"> )</span><br></pre></td></tr></table></figure></p>
+<p>接下来试着对文件做些修改，按Ctrl-s保存。咦，怎么没效果，编辑器底部(Emacs称之为minibuffer)怎么多出一个I-search的输入框。原来，Ctrl-s被绑定I-search命令（<a href="https://www.emacswiki.org/emacs/IncrementalSearch" target="_blank" rel="noopener">增量查找</a>）</p>
+<p>好，接下来我开始介绍如何通过调用<code>global-set-key</code>来绑定Ctrl-s到保存命令的方法。</p>
+<p><code>global-set-key</code>顾名思义，就是设置全局快捷键了。它的语法是：</p>
+<pre><code>(global-set-key key &apos;command)
+</code></pre><p>global-set-key函数有两个参数，第一个参数key表示我们要使用的快捷键，这里我们借助kbd宏表示Ctrl-s如下：</p>
+<pre><code>(kbd &quot;C-s&quot;)
+</code></pre><p>更多关于键的表达法，参考<a href="https://www.emacswiki.org/emacs/KeyboardMacros" target="_blank" rel="noopener">KeyboardMacros</a></p>
+<p>第二个参数command表示要执行的命令。看到这里，读者可能要问，我怎么知道保存对应的命令是什么呢。这就要用到Emacs提供的帮助功能了。方法如下：</p>
+<ol>
+<li>按C-h调出help命令，这时底下窗口会提示Type ? for further options</li>
+<li>按k，这时提示变为Describe the following key, mouse click, or menu item:</li>
+<li>用鼠标点击工具栏的保存按钮</li>
+</ol>
+<p>这时会新弹出一个窗口显示如下内容：</p>
+<blockquote>
+<p>&lt;tool-bar> &lt;save-buffer> runs the command save-buffer (found in<br>global-map), which is an interactive compiled Lisp function in<br>‘files.el’.</p>
+<p>It is bound to C-x C-s, &lt;menu-bar> &lt;file> &lt;save-buffer>.</p>
+</blockquote>
+<p>由此可见，保存命令是save-buffer，它已经被绑定到C-x C-s快捷键序列。</p>
+<p>顺便说一句，Emacs的帮助系统功能很强大，它号称是一款自文档编辑器（self-documenting editor）并非浪得虚名。我们再按照类似的方法，执行以下命令看得到什么结果：<br>C-h k，再按C-s，输出：</p>
+<blockquote>
+<p>C-s runs the command isearch-forward (found in global-map)</p>
+</blockquote>
+<p>由此验证了我们之前观察到现象——Ctrl-s被绑定到查找命令（isearch-forward，这个命令我们暂且记下，下一步要用）。</p>
+<p>我们再回到保存的这个问题上(对于使用频率很高的操作，要按两个快捷键才能完成还是显得效率低下）。既然我们已经知道快捷键的表达方式，也知道了保存的命令，我们就可以重新绑定了，在Emacs<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html" target="_blank" rel="noopener">初始化文件</a>中加以下代码：</p>
+<pre><code>(global-set-key (kbd &quot;C-s&quot;) &apos;save-buffer)
+</code></pre><p>保存文件，重启Emacs使改动生效。验证一下，按Ctrl-s可以保存了，I-search输入框也不再弹出。</p>
+<p>既然Ctrl-s被保存命令“抢”了，那么我们得给查找命令换一个快捷键，我第一个想到的是Ctrl-f（英文单词find的首字母），在初始化文件中加入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(global-set-key (kbd &quot;C-f&quot;) &apos;isearch-forward)</span><br></pre></td></tr></table></figure></p>
+<p>保存文件，退出Emacs重启使改动生效。验证一下，Ctrl-f应该能调出I-search了。</p>
+<p>以上我们已经学会了如何定义全局快捷键，接下来我们再研究一下如何定义模式快捷键。所谓模式快捷键，就是只有当特定模式激活才起作用的快捷键，它和全局快捷键的一个重要区别是，不同模式的快捷键不要求全局唯一。定义模式快捷键的语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(define-key keymap_name key &apos;command)</span><br></pre></td></tr></table></figure></p>
+<p>define-key函数有三个参数，其中key和command和前文介绍的global-set-key参数相同，此处不再赘述。keymap_name是指定模式定义的keymap变量名。如何找出keymap_name，方法之一是查看该模式的在线文档，比如本例<a href="https://www.emacswiki.org/emacs/IncrementalSearch" target="_blank" rel="noopener">I-search在线文档</a>；另一种方法通过Emacs自带的文档系统，步骤如下：</p>
+<ol>
+<li>M-x describe-function，然后输入isearch-mode（模式名通常形如xyz-mode）。</li>
+<li>在输出的结果找点击源码链接，此例为‘isearch.el’.</li>
+<li>通读该源码，或搜索字符串-map，很快我们便找到了以下代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(defvar isearch-mode-map</span><br><span class="line">...</span><br><span class="line">    (define-key map &quot;\C-s&quot; &apos;isearch-repeat-forward)</span><br><span class="line">    (define-key map &quot;\C-r&quot; &apos;isearch-repeat-backward)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可知，isearch-mode-map就是我们要找的keymap_name，此外我们还知道哪些键绑定到哪些命令。</p>
+<p>接下来我们的任务是把isearch-repeat-forward和isearch-repeat-backward分别绑定到右方向键和左方向键（这比按Ctrl-s和Ctrl-r更易记且更直观），在配置文件中输入以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(define-key isearch-mode-map (kbd &quot;&lt;left&gt;&quot;) &apos;isearch-repeat-backward)</span><br><span class="line">(define-key isearch-mode-map (kbd &quot;&lt;right&gt;&quot;) &apos;isearch-repeat-forward)</span><br></pre></td></tr></table></figure></p>
+<p>重启Emacs后，我们先按Ctrl-f调出I-search，输入要查找的内容，再按左/右方向键，看是否能分别查找前一个/后一个匹配的字符串。</p>
+<p>至此，我已经介绍了如何定义模式快捷键，但由于有些模式是延迟加载的，我们使用上述方法时可能会遇到一些问题。下边我们通过定制窗口切换（按Ctrl-TAB）的例子说明这个问题。使用前面学到的知识，我们尝试在Emacs<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Init-File.html" target="_blank" rel="noopener">初始化文件</a>文件中添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(global-set-key [C-tab] &apos;other-window)</span><br></pre></td></tr></table></figure></p>
+<p>重启Emacs后再按Ctrl-tab，发现这个快捷键时灵时不灵，比如当前是Org-mode就无法切换到下一个窗口。研究后发现Org-mode把Ctrl-tab绑定到其它命令，由于模式快捷键的优先级高于全局快捷键，导致在Org-mode下，按Ctrl-tab并不切换到下一个窗口（而是执行其它操作）。知道原因后，我们尝试重新绑定org-mode的快捷键：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(define-key org-mode-map [C-tab] &apos;other-window)</span><br></pre></td></tr></table></figure></p>
+<p>这样改了之后再重启Emacs发现控制台报了一个错：</p>
+<blockquote>
+<p>Symbol’s value as variable is void: org-mode-map</p>
+</blockquote>
+<p>出现这个错误的原因是在Emacs初始化的时候org-mode-map还没有定义，解决办法是通过add-hook等待org-mode加载完后再执行我们的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(add-hook &apos;org-mode-hook</span><br><span class="line">          &apos;(lambda ()</span><br><span class="line">             (define-key org-mode-map [C-tab] &apos;other-window)))</span><br></pre></td></tr></table></figure></p>
+<p>重启Emacs后，终于可以使用Ctrl-tab便捷地在不同窗口切换了。</p>
+<p>好，关于Emacs快捷键的定制就介绍到这里。</p>
+</div></article><div id="base-discus"></div></div></div><footer class="base-footer"><div class="footer-wrapper"><span>Ruilin Using </span><a href="https://github.com/chuguixin/Simple"><span>Simple</span></a><span> Presents For You.</span></div></footer><div class="dom-ready"><script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script><script src="/js/base.js"></script></div></body></html>
