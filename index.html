@@ -138,6 +138,478 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-10023" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/02/25/10023/">HTML入门教程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/02/25/10023/" class="archive-article-date">
+  	<time datetime="2019-02-24T22:03:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TODO 这篇文章主要内容 -->
+<h2 id="HTML名字的含义"><a href="#HTML名字的含义" class="headerlink" title="HTML名字的含义"></a>HTML名字的含义</h2><p>HTML是HyperText Markup Language的首字母缩写，意思是超文本标记语言。我将从名字入手，先介绍这门标记语言，然后再它的超文本特性。</p>
+<p>先建一个文本文档，用记事本输入以下内容：</p>
+<pre><code>Hello
+HTML
+</code></pre><p>我们把扩展名改为.html，用浏览器打开显示如下：<br><img src="/2019/02/25/10023/example1.png" title="例1"></p>
+<p>看，我们的第一个html文档就写好了。你可能有疑问，这不过是一个普通的文本文档，改了扩展名而已。没错，这还不算是一个真正的html文档，但浏览器的确像对待真正的html那样解析和显示该文档的内容了。你注意到没有，我们在文本文件中输入的是两行内容，而浏览器中Hello和HTML却在同一行显示——这真是html文档渲染的特征！另外，我用这个例子还想说明，html文档本质上就是一个文本文档，因此你可以用任何你喜欢的文本编辑器编辑html文档，而不必找复杂专门的html开发工具，特别在初学入门的时候更应如此。</p>
+<p>接下来我们开始学第一个最简单html标记——换行标记<code>&lt;br&gt;</code>。</p>
+<p>在Hello的结尾处输入<code>&lt;br&gt;</code>：</p>
+<pre><code>Hello&lt;br&gt;
+HTML
+</code></pre><p>刷新html文档后显示如下：<br><img src="/2019/02/25/10023/example_br.png" title="换行">    </p>
+<p>可见，<code>&lt;br&gt;</code>标记已经起作用了。接下来我们给这个文档增加更多的html标记，让它更像一个真正的html。这需要用第二个例子，新建example2.html，如输入以下内容：</p>
+<pre><code>网页标题
+文章标题
+第一段内容
+第二段内容
+</code></pre><p>我们希望对应的内容都以合适的样式显示在正确的位置，如下图所示：</p>
+<img src="/2019/02/25/10023/example_2.jpg" title="例二">
+<p>那该怎么做呢，那就要给指定的文本插入相应html标记：</p>
+<pre><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;网页标题&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;文章标题&lt;/h1&gt;
+        &lt;p&gt;第一段内容&lt;/p&gt;
+        &lt;p&gt;第二段内容&lt;/p&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>这个例子显示了一个html最基本的结构，首先最外层由一对<code>&lt;html&gt;</code>和<code>&lt;/html&gt;</code>标记包裹，它们及它们之间的内容共同组成<code>&lt;html&gt;</code>元素，其中<code>&lt;html&gt;</code>称为<code>&lt;html&gt;</code>元素的开始标记，<code>&lt;/html&gt;</code>称为<code>&lt;html&gt;</code>元素的结束标记。<code>&lt;html&gt;</code>元素是一个html文档最外层元素。<code>&lt;html&gt;</code>元素的内容又包含另外两个元素，分别是<code>&lt;head&gt;</code>元素和<code>&lt;body&gt;</code>元素。<code>&lt;head&gt;</code>元素主要的内容包括一个<code>&lt;title&gt;</code>元素。<code>&lt;body&gt;</code>元素的内容包括一个<code>&lt;h1&gt;</code>元素和两个<code>&lt;p&gt;</code>元素。</p>
+<p>总结一下：<br>大多数<code>&lt;html&gt;</code>元素都由3部分组成：</p>
+<p><code>&lt;标记名&gt;</code>内容<code>&lt;/标记名&gt;</code></p>
+<p>事实上，还有一类元素只有<code>&lt;标记名&gt;</code>，比如一开始学的<code>&lt;br&gt;</code>标记，它同时又可以是一个<code>&lt;br&gt;</code>元素，这类只由开始标记组成的元素称为空元素。除了<code>&lt;br&gt;</code>，后文将介绍的<code>&lt;img&gt;</code>元素也是空元素。</p>
+<p>到此，我们已经介绍了HTML的ML。接下来我将介绍HT部分，即超文本。</p>
+<p>我们先看一个例子，在<code>&lt;p&gt;第二段内容&lt;/p&gt;</code>后添加以下内容：</p>
+<pre><code>&lt;a href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;
+</code></pre><p>刷新浏览器后便得到一个可点击的链接，如下图所示：</p>
+<img src="/2019/02/25/10023/example_br.png" title="换行">
+<p><code>&lt;a&gt;</code>元素主要作用是可以从一个网页跳转的另一个网页。它的组成和我们之前介绍的元素基本相同，也是分为起始标记，内容和结束标记3部分。唯一的区别是起始标记中多了<code>href=&quot;http://www.baidu.com&quot;</code>，它是<code>&lt;a&gt;</code>元素的属性，它告诉<code>&lt;a&gt;</code>元素点击文本（即此例中的“百度”）后跳转的目标地址。<code>&lt;a&gt;</code>元素还支持另一个常用的属性<code>title</code>——这个属性的用途是当鼠标光标移到链接文本上时显示一段提示内容。</p>
+<pre><code>&lt;a href=&quot;http://www.baidu.com&quot; title=&quot;跳转到百度&quot;&gt;百度&lt;/a&gt;
+</code></pre><p>属性的通常形式是属性名=”属性值”，但对于布尔类型的属性，通常只有属性名。</p>
+<h2 id="绝对路径和相对路径"><a href="#绝对路径和相对路径" class="headerlink" title="绝对路径和相对路径"></a>绝对路径和相对路径</h2><p>像<code>http://www.baidu.com</code>这种是跳转到其它网站的一个目标路径，<code>href</code>属性也跳转到当前网站的目标地址，如下所示：</p>
+<pre><code>&lt;a href=&quot;dir1/dir1_2/a.html&quot;&gt;跳转到当前网站&lt;/a&gt;
+</code></pre><p>其中，dir1是当前网站根目录下的一级目录，而dir1_2是dir1下的一个子目录，a.html是dir1_2目录下的一个html文档。</p>
+<p>如果目标文档和当前html文档在同一目录下时，则一般不用从网站的根目录开始写起，而是直接写为1.html或./1.html（.表示当前目录）：</p>
+<pre><code>&lt;a href=&quot;./1.html&quot;&gt;跳转到同级目录中的1.html&lt;/a&gt;
+</code></pre><p>如果目标文档位于当前html文档的上级目录下时，可以写为：</p>
+<pre><code>&lt;a href=&quot;../2.html&quot;&gt;跳转到上级目录中的2.html&lt;/a&gt;
+</code></pre><h1 id="图像让网页更好看"><a href="#图像让网页更好看" class="headerlink" title="图像让网页更好看"></a>图像让网页更好看</h1><p>图像是现代网页不可或缺的组成元素，在HTML中要显示一个图像语法很简单，如下：</p>
+<pre><code>&lt;img src=&quot;my.jpg&quot;&gt;
+</code></pre><p><code>&lt;img&gt;</code>元素最重要的属性是src，它是要显示图像文件的路径。和之前<code>&lt;a&gt;</code>元素的href属性一样，src属性也支持三种路径寻址方式。但<code>&lt;img&gt;</code>元素和<code>&lt;a&gt;</code>元素有一点较大的区别是，前者是一个独立的图片文件，浏览器要异步下载并在当前网页中显示，而由于各种原因，现在这个图片文件可能耗时很长，甚至下载失败（比如目标文件不存在），这时，我们最好提供一个alt属性，以便当图片不存在时提供替换内容（具体展示可能因浏览器不同而不同）。另外，大多数浏览器还支持title，它的作用和<code>&lt;a&gt;</code>元素的title属性类似，即在鼠标光标移到图像上时显示提示文字，可用于一些重要的图片，例如：</p>
+<pre><code>&lt;img src=&quot;logo图片路径&quot; alt=&quot;logo&quot; title=&quot;首页&quot; /&gt;
+</code></pre><p>我们已经学过如何使用<code>&lt;a&gt;</code>元素通过点击文本跳转到目标网页的方法，我们也学过如何显示一个图像。那能不能通过点击一个图片跳转到指定的目标？当然可以，方法是在<code>&lt;a&gt;</code>元素内嵌套一个<code>&lt;img&gt;</code>元素，如下所示：</p>
+<pre><code>&lt;a href=&quot;跳转目标地址&gt;
+    &lt;img src=&quot;图片目标地址&quot; alt=&quot;bbb&quot;&gt;
+&lt;/a&gt;
+</code></pre><h2 id="更多标记"><a href="#更多标记" class="headerlink" title="更多标记"></a>更多标记</h2><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>列表分两种，一种是有序列表(ordered list)，使用标记<code>&lt;ol&gt;</code>，另一种是无序列表（unordered list），使用标记<code>&lt;ul&gt;</code>。每个列表由一个到多个列表项(list item)，使用标记<code>&lt;li&gt;</code>。举例如下：</p>
+<pre><code>&lt;h1&gt;有序列表举例&lt;/h1&gt;
+&lt;ol&gt;
+    &lt;li&gt;项目a&lt;/li&gt;
+    &lt;li&gt;项目b&lt;/li&gt;
+    &lt;li&gt;项目c&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;无序列表举例&lt;/h1&gt;
+&lt;ul&gt;
+    &lt;li&gt;项目a&lt;/li&gt;
+    &lt;li&gt;项目b&lt;/li&gt;
+    &lt;li&gt;项目c&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>结果如下图所示：<br><img src="/2019/02/25/10023/example_list.png"></p>
+<h3 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h3><p>表格标记是<code>&lt;table&gt;</code>，一个表格由多行组成，每一行用一个<code>&lt;tr&gt;</code>（table row）标记表示，每行中可以包含若干数据单元格，每个数据单元格由一个<code>&lt;td&gt;</code>（table data）标记表示。举例如下：</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;小明&lt;/td&gt;&lt;td&gt;小王&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;小红&lt;/td&gt;&lt;td&gt;小美&lt;/td&gt;
+    &lt;/tr&gt;
+
+&lt;/table&gt;
+</code></pre><p>上述表格将显示如下（为了看起来更像个常见的表格，已经加了适当样式）：   </p>
+<img src="/2019/02/25/10023/example_table_nohead.png">
+<p>在每个表格行中也可以加首部<code>&lt;th&gt;</code>（table head），如下所示：</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;th&gt;男生组&lt;/th&gt;&lt;td&gt;小明&lt;/td&gt;&lt;td&gt;小王&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;th&gt;女生组&lt;/th&gt;&lt;td&gt;小红&lt;/td&gt;&lt;td&gt;小美&lt;/td&gt;
+    &lt;/tr&gt;
+
+&lt;/table&gt;
+</code></pre><p>结果显示如下：</p>
+<img src="/2019/02/25/10023/example_table_with_head.png">
+<h3 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h3><p>表单(form)是客户和服务器交互的重要手段，有了表单，用户除了能被动从服务器接受数据外，还能主动向服务器发送数据。一个表单使用<code>&lt;form&gt;</code>标记。举一个最简单的表单例子：</p>
+<pre><code>&lt;from action=&quot;http://yourdomain.com/process_your_form.php&quot; method=&quot;POST&quot;&gt;
+    &lt;input type=&quot;text&quot; value=&quot;abc&quot;&gt;
+    &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</code></pre><p><code>&lt;form&gt;</code>有两个属性，一个是action，用于标识处理该表单的后台服务脚本，另一个是method，用于指定提交方式。method有两个可选值，分别是GET和POST，前者把表单数据作为请求url的参数提交到服务器，每次提交GET请求后会在浏览器历史记录中增加一条；后者把表单数据封装在http数据包中发送给服务器，它不会在浏览器中留下历史记录，适用于包含大数据量的表单请求，或包含有私密信息的请求。</p>
+<p>表单中的input表示各种输入控件，可输入文本(text)，单选框(radio)，复选框(checkbox)等，不同的输入控件类型由intpu的type属性指定。intput的value属性是控件值。还有一种type为submit的特殊输入控件，它是一个按钮，点击该按钮会提交表单数据到指定的服务器(有<code>&lt;form&gt;</code>的action决定)。</p>
+<h1 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h1><p>前面我们已经介绍了html语言的基础知识，常见的标记。在html5中这些标记仍然有效，换句话说，html5是向后兼容的，然而，html5确实新增了一些新标记，以便更方便地标记页面内容。</p>
+<img src="/2019/02/25/10023/html5.png" title="html5结构">
+<p>上图是一个常见的网页结构，其中上边是一个<code>header</code>元素，表示它是一个头部，通常包含网站logo及导航条，底部是一个<code>footer</code>元素，中间部分由两个<code>section</code>加一个侧边栏(<code>aside</code>)组成。其中，main section有包含两个<code>article</code>。在html5之前，要借助<code>div</code>实现这些不同区域的划分。然而，分别使用合适的元素标注不同区域的逻辑含义比清一色使用<code>div</code>更加清晰明了。这不但有助于web开发者的维护，也有助于浏览器和搜索引擎的优化。</p>
+<p>这里要补充说明的是，html5中<code>header</code>元素区别于和<code>head</code>元素。<code>header</code>是<code>&lt;body&gt;</code>中的子元素，标识某一块内容为头部，<code>head</code>元素是<code>html</code>的子元素，用于存放当前html文档一些元信息；在整个html文档中，<code>header</code>不要求唯一，你甚至可以给某一局部区域添加<code>header</code>，但<code>head</code>元素必须唯一。</p>
+<p>html5还引入了一些多媒体处理能力，比如播放视频，要是以前的版本，必须借助Flash等技术才能播放视频。在html5中只要写如下代码就可以了：</p>
+<pre><code>&lt;video src=&quot;video/tweetsip.mp4&quot;&gt;
+</code></pre><p>是不是和使用<code>&lt;img&gt;</code>元素显示一张图片一样简单？另外，我们还可以给<code>video</code>元素添加更多属性更好地控制视频播放方式：</p>
+<ul>
+<li>autoplay: 是否自动播放</li>
+<li>controls: 是否显示控件</li>
+<li>width: 视频播放窗口宽度</li>
+<li>height: 视频播放窗口高度</li>
+<li>poster: 视频加载前显示海报</li>
+<li>loop: 是否循环播放</li>
+</ul>
+<p>然后，有一个坏消息是，各大浏览器厂商对视频播放格式的支持不尽相同。在一个浏览器上能正常播放的视频换一个浏览器可能就不行。一种解决办法是提供多个不同格式的可选的视频源，代码如下：</p>
+<pre><code>&lt;video&gt;
+    &lt;source src=&quot;video/xxx.mp4&quot;&gt;
+    &lt;source src=&quot;video/xxx.webm&quot;&gt;
+    &lt;source src=&quot;video/xxx.ogv&quot;&gt;
+    &lt;p&gt;对不起，您的浏览器不支持播放该视频！&lt;/p&gt;
+&lt;/video&gt;
+</code></pre><p>除了视频，html5也支持播放音频——<code>audio</code>元素，同样的，<code>audio</code>元素也和<code>video</code>元素具有不同浏览器格式不兼容的问题。</p>
+<h1 id="其它有关内容"><a href="#其它有关内容" class="headerlink" title="其它有关内容"></a>其它有关内容</h1><h2 id="文档类型"><a href="#文档类型" class="headerlink" title="文档类型"></a>文档类型</h2><p>随便打开一个网页，查看其源代码，经常会看到文档最开始处写着：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+</code></pre><p>这行代码的作用是标注该文档是一个html文档。如果你有兴趣，可以翻一下以前的html版本的doctype，不但冗长，而且多种不同的格式。自从html5开始，一律简化为上述格式，而且制定html标准的相关组织承诺以后不会有所谓html6, html7…，即使有一些调整升级，也会做兼容。因此，从今往后，概念上讲就叫html。</p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>前文讲过，html中大部分标记都是<code>&lt;开始标记&gt;</code>和<code>&lt;/结束标记&gt;</code>，文档类型标记有点特殊，在<code>&lt;</code>后多了个<code>!</code>，在html中，带有<code>!</code>的特殊标记还有注释代码，其格式如下：</p>
+<pre><code>&lt;!-- 这是一行注释 --&gt;
+</code></pre><p>注释内容不会被浏览器呈现，主要用于帮助web开发人员更好地理解代码的含义。</p>
+<h2 id="有效性校验"><a href="#有效性校验" class="headerlink" title="有效性校验"></a>有效性校验</h2><p>我们(特别是初学者)在写一个html文档时，有时不太确定写的内容、格式是否符合规范，这是可以使用一个W3C提供的一个校验工具，网址是：<a href="http://validator.w3.org/" target="_blank" rel="noopener">http://validator.w3.org/</a><br>它提供多种不同校验方式，可以告诉它目标地址（Validate by URI），或上传一个源码文档(Validate by File Upload)，也可以直接输入源码（Validate by Direct Input），指定来源点击Check按钮开始校验，如下图所示：</p>
+<img src="/2019/02/25/10023/w3c_validator.png">
+<h2 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h2><p>一个html文档以某种编码格式保存在文件系统中，在Windows系统，可以使用自带的记事本工具查看：<br>选中html文件，右键用记事本打开，文件 | 另存为，编码处显示当前编码，可以从下拉框中选中其它编码并保存。</p>
+<p>浏览器在打开html5文档时会根据一些规则尝试判断当前html文档的编码，但由于某些原因，有时无法正确地判断文件编码，这导致html解析出现乱码。可以在<code>&lt;head&gt;</code>元素增加如下代码显示指明正确的字符集：</p>
+<pre><code>&lt;meta charset=&quot;gbk&quot;&gt;
+</code></pre><h2 id="样式简介"><a href="#样式简介" class="headerlink" title="样式简介"></a>样式简介</h2><p>回顾一下我前面讲的内容，html是一门标记语言，它的用途通过一些预先定义好的标记（标签）确定网页内容及其逻辑结构。至于这些内容如何呈现，如何布局，则要交给CSS（层叠样式表）完成。最简单的应用CSS的方式是在html的<code>head</code>元素中增加一个<code>style</code>节点并在其中指定样式：</p>
+<pre><code>&lt;head&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        body {
+            background: blue;
+            border: solid;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+</code></pre><p>上述代码的作用是设定body元素背景色为蓝色并加了一个边框。另一种方式是把样式独立放在一个专门的文件中，通常取名为xxx.css，然后用<code>link</code>标记引入该样式文件。</p>
+<pre><code>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;xxx.css&quot;&gt;
+</code></pre><p>一般来讲，如果只是少量样式，可以采用第一种方式，直接嵌入到html文档中，但实际网站通常采用把样式和html分开的方式，以利于维护。    </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/02/25/10023/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-10021" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/27/10021/">猴子与香蕉</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/27/10021/" class="archive-article-date">
+  	<time datetime="2019-01-27T08:29:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>李笑来在他的《把时间当朋友》一书中引述了一个广为流传的寓言故事：</p>
+<p>把五只猴子关在一个笼子里，上头挂着一串香蕉。实验人员事先准备了开水，一旦有猴子碰香蕉，马上就会把滚烫的开水浇向那只猴子。一开始有只猴子想去拿香蕉，被开水烫，之后每只猴子在几次同样的尝试后，发现结果都一样。后来再也没有一只猴子试图去拿香蕉了。  </p>
+<p>然后实验人员把其中一只猴子换走，换进去一只新猴子。这只新猴子看到香蕉，马上想去拿。结果，还没等实验人员浇水，其它四只猴子就对那新来的猴子一顿暴打。新猴子挨了几次打之后，也不再试图去拿香蕉了。  </p>
+<p>此后，实验人员再把另一只猴子换走，这只新猴子看到香蕉，也是迫不及待要去拿，当然，一切如前，等待它的是其他四只猴子的一顿暴打。于是，这只新来的猴子也不敢碰香蕉了。最好玩的是，上次挨打的猴子，这次出手最重。（其他的猴子也许出于爱护，这只猴子肯定是出于报复，因为它并没有被开水浇过。）最终，笼子里最初的五只猴子都被换走了。现在的这五只猴子并不知道开水的存在，它们只知道一件事情——谁要敢碰那串香蕉，上去就是一顿暴打。（它们的行为与爱护无关，全都是出于报复！）</p>
+<p>这个故事是不是很有趣？但是如果我们换位思考站在猴子的立场分析一下它们的表现，然后反观我们人类自身，或许更有趣。</p>
+<p>首先假设我们是首批被关在笼子中的五只猴子中的一只，看到香蕉就想去取，这是很自然的事，换成人类也会这样做。伊恩·莱斯利在其代表作《好奇心》中指出，“灵长类动物有三个基本的驱动力：性、食物和居住地。但是，人类却拥有第四个驱动力，就是好奇心”。如果是我们人类，发现每次去拿香蕉就被开水浇，就会寻思取香蕉和被浇开水两件事之间是否存在某种联系。这时好奇心会驱使我们找出其背后的真相。亚里士多德说：“自然厌恶真空。”而我们人类是不允许自己对世界的理解出现真空的。不管什么现象，我们总得找出它存在的合理性。至于是不是荒谬，有时候就管不了了。如果是古代，人们很有可能认为那根香蕉是恶魔的化身，谁触碰它就会给自身带来厄运，而浇下的开水是天神在发怒，在施加惩罚。如此这般，一个神话就产生了。</p>
+<p>后来，换了一只新猴子进来，当它去拿香蕉时，遭到先来的那四只猴子的暴打。为什么先来的猴子要暴打新来的猴子，要知道实验人员只是把开水浇到拿香蕉的那一只猴子身上，李笑来的解释是“也许出于爱护”。或许先来的猴子只是警告新猴子摘香蕉会被开水浇，但身边没有开水可展示，很难形容。不如向新猴子传达“惩罚”之类的概念，虽然“惩罚”是个抽象概念，但可以通过“殴打”这种具体的，可切身感受的行为间接的表达出来。如果换成人类，由于有了语言这个强大的沟通工具 ，只需向新成员说明缘由即可，也就避免了上述殴打行为。尤瓦尔·赫拉利在其《人类简史》一书指出，人类拥有更加发达的能力，也就是语言能力。我们不但可以描述“香蕉”、“开水”这类现实物体，也能表达和理解“惩罚”、“好”、“坏”这些虚拟对象和概念。赫拉利说“如果一个物种能够谈论虚拟对象，它才有分工合作、组成复杂社会的可能性”。</p>
+<p>当笼子里最初的五只猴子全部换成新猴子后，笼子里的五只猴子并知道开水的存在，但它们依然不会去摘那串香蕉，也不允许其它猴子去摘。很多人用这个故事解释传统（特别是那些荒谬的传统）是如何形成的。很多今天看起来没什么道理的传统，当初确实曾经正确或者曾经最接近正确。事实上，这些解释有一个专门的名词叫“湿猴理论”。</p>
+<p>让我们继续联想：如果我们人类处在被换进来的新猴子的境地，会怎么做，会不分青红皂白地接受前人遗留下来的一切吗？答案是，不会。前边我已经提到，我们人类拥有好奇心，不管什么现象，总得找出它存在的合理性。来看一则类似但以我们人类为主角的小故事。</p>
+<p>美国的一对夫妻，妻子在蒸火腿肠时，总是把火腿肠切成两半。</p>
+<p>丈夫就问：“为什么要切开啊，这样一蒸中间就冒出来了。”</p>
+<p>妻子说：“我不知道，自小我妈妈就这样蒸的。”</p>
+<p>那好，问问妈妈吧。</p>
+<p>妈妈说：“我也不知道，我自小你姥姥就是这样蒸的。那问你姥姥吧。”</p>
+<p>姥姥说：“唉，你不知道，你妈小时候咱家穷，大的蒸锅买不起，只能买小蒸锅，火腿太长，不切放不进去，所以得切开啊！”</p>
+<p>参考资料：<br>李笑来《把时间当朋友》<br><a href="https://www.zhihu.com/question/20208922" target="_blank" rel="noopener">https://www.zhihu.com/question/20208922</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">心理学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/27/10021/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-10020" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/24/10020/">买彩票的秘诀</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/24/10020/" class="archive-article-date">
+  	<time datetime="2019-01-23T21:17:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一个真实的故事。西班牙的一个彩票投注站曾经来这样一位买彩票的人，他一定要挑选尾号为48的数字，当时那里的技术还比较落后，想要找符合这样条件的号码需要人工费时费力地搜寻。然而功夫不负有心人，他如愿以偿地找到一张尾号48的彩票。几天后开奖，这个人果然中了大奖。</p>
+<p>后来记者采访他：“听说你买彩票有自己的一套，请问中奖的秘诀是什么？”<br>那个买彩票的人回答说：“当然有秘诀，因为我早知道尾号48的数字能中大奖！”<br>记者表示疑惑，要求中奖者进一步解释。那人继续说：“因为我每天都做一个同样的梦，梦见数字7，一连梦见7次，7乘7不就是48吗，这是顺应天意啊”。</p>
+<p>这个故事说明，普通人面对成功时，倾向于认为成功是自身努力的结果，哪怕在别人看起来就是个笑话。这背后有一个心理学效应，叫做“可得性启发法”。人们在进行判断的时候，总是依赖最先得到的经验和信息。比方说那个彩票中奖者，他也确实付出了一番努力，并取得了成功，当他回顾这段经历的时候，他最难忘的一定是他选号码的方法和策略，而容易忽略外界的偶然因素。</p>
+<p>可见我们的思维有时真的是不靠谱，在事后回顾时容易发生偏误，那在事发前呢？</p>
+<p>心理学还有个现象，叫“控制错觉”，讲的是人经常会有种错觉，以为自己可以掌控一些偶然性的事情，如彩票、赌博等。研究人员发现：</p>
+<ol>
+<li>投注者亲自选号码比随机分配号码，更愿意下注 </li>
+<li>在骰子掷出前往往比掷出之后下注更多的筹码</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/24/10020/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-10019" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/12/10019/">如何有效阅读一本书</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/12/10019/" class="archive-article-date">
+  	<time datetime="2019-01-12T00:14:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="/2019/01/12/10019/思维导图.jpg" title="本文内容">
+<p>《如何有效阅读一本书》，由书名不难猜出，它主要是有关读书方法论的，本书的副标题是“超实用笔记读书法”，作者在书中重点介绍了一种人人都能学会的读书笔记——葱鲔火锅<sup><a href="#1">[1]</a></sup>式读书笔记。</p>
+<p>首先，作者开篇就提出一个大家读书中经常遇到的问题：<br>长期读书的人就算认真读过某本书，100%的内容只记得住1%或2%，然而因为要继续接触很多书籍，最后连那1%~2%都会忘记。  </p>
+<p>还有，之前在书中学到的知识只是在脑子里过了一遍，以后用到的时候怎么也想不起来。</p>
+<p>作者说“只是这样读过，就等于没有读过。如果只是用眼睛看过，而不是记在脑子里，读再多的书也没有用。”</p>
+<p>人的记忆力是有限的，如果只是一味地读，就会学了新知识，忘了旧知识，以这种方式把时间花在阅读和学习上，就好比把水浇灌到沙漠中，最后一无所得。</p>
+<p>那怎样才能做到不只是“读过”，还把读过的书记在脑子里呢？ 怎样才能达到对知识随用随取，信手拈来的境界呢？ 有两个有效方法，一个是定期复习知识，另一个是应用知识。本尼迪克特·凯里在《如何学习》一书中提到人的记忆有两种能力，分别是储存能力和提取能力。其中复习知识主要是强化储存能力，而应用知识则是锻炼提取能力。</p>
+<p>如何复习知识，很少有人愿意花费跟第一次阅读一样的精力去把原书重读一遍，所以作者推荐在读书时做好读书笔记，复习时只要重读笔记即可。由于笔记比原书要简短地多，读完笔记并不需要花太多时间，而且笔记中已经摘抄了原书的精髓，重读笔记同样能达到重读原书的复习效果。</p>
+<p>说到写读书笔记，我们是否遇到过这种场景，读完一本书，想要写笔记，但就是不知道写些什么。用作者介绍的“葱鲔火锅式”笔记法，就不会出现没东西可写的问题。</p>
+<p>“葱鲔火锅式”读书笔记，由以下信息组成：  </p>
+<ul>
+<li>写读书笔记的日期</li>
+<li>书名  </li>
+<li>作者名  </li>
+<li>对自己来说重要的内容（摘抄）  </li>
+<li>自己对这篇文章的感想（评论）</li>
+</ul>
+<p>其中摘抄和评论是交替进行的，即摘抄一段，写一段自己对这部分内容的评论。这种笔记法摘抄和评论并存，正如“葱鲔火锅”这道菜中鱼肉和大葱的关系一样，这种笔记法也因此得名。</p>
+<p>不过作者不主张边读边做笔记，那样会摘抄过多不太重要的内容，浪费时间。作者建议采用多次重读法最终确定摘抄内容，具体步骤如下：</p>
+<blockquote>
+<p>通读 把读起来觉得不错的那一页折角。<br>重读 读完一遍之后，再把折角的几页重新读一遍，如果仍然觉得很好，就把那一页的另一个角也折起来。<br>标记 再重新读一遍折起上下两角的几页，如果第三次阅读后仍然觉得值得一读，就用笔在上面做记号。</p>
+</blockquote>
+<p>用这种方法，可以把书中真正对自己有价值的精髓保留下来，把不太重要的内容过滤掉，不但可以节省摘抄的时间，还能节省以后复习的时间。不过上述折角的方法只适用于纸质书，如果我们阅读的是电子书，操作要稍做调整，可以用绝大多数电子书app都有的书签功能。在通读时给觉得不错的页添加书签，重读时只读添加了书签的页，如果仍然觉得很好，就保留那一页的书签，否则取消书签。</p>
+<p>一旦我们做好了读书笔记，我们需要复习时只要重读笔记就可以了。作者建议我们养成重读的习惯，他说“书的价值是通过时间体现的。有些书只有在读完一段时间以后才能让人源源不断地感受到其中的魅力”。那什么时候重读笔记呢，这不得先说一说我们知识的遗忘规律。德国心理学家艾宾浩斯研究发现，遗忘在学习之后立即开始，最初遗忘速度很快，以后逐渐缓慢。根据这个特征，我们的复习频率应该从高到低。第一次复习最好是做完笔记后立刻进行，时间越长，复习间隔时间越长。</p>
+<p>通过重读笔记我们应该尽量让自己不忘记书的内容，使之融入自己的身心。这主要是一个通过信息输入实现记忆储存的过程，那如何进行信息输出从而提高记忆的提取能力呢？</p>
+<p>我们在写读书笔记的评论时，会联想现有知识和经验，这实际上已经是提取和输出知识。写完读书笔记还可以基于笔记再写篇博客，具体做法可以参考报纸和杂志评论及纪实文学经常采用的格式，即以书评作者的想法、解释和自己对书的印象为主（只要对读书笔记的评论部分稍加改动即可），再搭配引用一些书的原文（对应读书笔记中的摘抄部分）。在读书笔记这一产物中再生产出原创文章，就像把一把刀磨得更加锋利。在撰写和参考笔记的过程中，我们持有的信息会随之更新，同时也会不断发酵。</p>
+<p>我们也要尽量将书中的信息应用到自己的生活中，在享受读书的过程中塑造自我，让自己读过的书物尽其用。这里说一个笔者自己的例子。笔者一直想写博客，但是懒得动笔。直到有一天阅读了斯蒂芬·盖斯的《微习惯》后，决定采用作者推荐的方式先培养写作习惯，我给自己定下的微习惯是“每天写十个字”。微习惯的精髓在于它小到不可能失败，这能帮助人们克服起动任务的阻力，久而久之便能帮助人们建立强大的自信心和行为模式。像这样读完书后把学到的知识付诸实践，原本晦涩难懂的原理便能豁然开朗，原本枯燥乏味的知识转变为宝贵的人生经验和个人能力。</p>
+<p>在当今效率第一，包括阅读在内的任何事情都追求快餐式消费的时代，读者可能有疑问，按上述方法读书岂不是很浪费时间？诚然，不是任何一本书都要阅读三次以上，也不是任何一本书都要做笔记，写博客。对于那种以消磨时间为目的的休闲书，看完扔掉就可以了。而对于那种真正有价值的书，必须踏踏实实地阅读和复习。读完每一本书，都能有扎实的收获。至于一个月能读很多书、读一本书只用几十分钟这样的能力，在这个目标前都是苍白无力的。胡适说：“怕什么真理无穷，进一寸有一寸的欢喜”。</p>
+<p>注：<br><span id="1">[1]葱鲔[wěi]火锅，即葱段金枪鱼火锅，是以葱和金枪鱼为材料烹制的日本特色料理，其中葱为配菜，而非调理，与金枪鱼同样重要。</span></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">阅读</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/12/10019/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-10018" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
   <div class="article-inner">
     
@@ -478,12 +950,12 @@
     <div class="article-entry" itemprop="articleBody">
       
         
-        <div id="aplayer-HWDGbLCd" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-VwJexXHh" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-HWDGbLCd"),
+            element: document.getElementById("aplayer-VwJexXHh"),
             narrow: false,
             autoplay: false,
             showlrc: false,
@@ -639,197 +1111,10 @@
 
 
   
-    <article id="post-10005" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/04/10005/">《这个世界土崩瓦解了》读后感</a>
-    </h1>
-  
-
-        
-        <a href="/2018/09/04/10005/" class="archive-article-date">
-  	<time datetime="2018-09-04T15:19:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="故事梗概"><a href="#故事梗概" class="headerlink" title="故事梗概"></a>故事梗概</h1><p>《这个世界土崩瓦解了》主要讲述一个非洲氏族在欧洲殖民主义的侵略下土崩瓦解的故事。故事的主人公奥贡喀沃(以下简称奥)出生在一个并不富裕的家庭，但是他靠自己勤劳的双手，以及对荣誉和财富的追求，终于获得氏族中一些受人尊敬的头衔和殷实的家财。故事的转折发生在奥因误杀同族人而逃亡到他母亲所在村庄的7年中：欧洲殖民者来了，他们在村庄里新建教堂，学校，医院，还有新政府。等奥流亡归来后，这些殖民者已站稳脚跟。他试图武力驱逐这些白人，使村庄回到以前的状态，然而最终以失败告终，奥本人最后上吊自杀。</p>
-<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q &amp; A"></a>Q &amp; A</h1><h2 id="为什么基督教会在村庄中逐步发展壮大？"><a href="#为什么基督教会在村庄中逐步发展壮大？" class="headerlink" title="为什么基督教会在村庄中逐步发展壮大？"></a>为什么基督教会在村庄中逐步发展壮大？</h2><p>要回答这个问题，可以从村庄基督教堂的早期成员获得一些线索：<br>第一类成员是对他们本族的宗教信仰产生困惑甚至失望的人，最典型是奥的儿子恩沃依埃。他曾有过两次内心的弦崩断的经历，第一次是听到双胞胎婴儿（在村中双胞胎被视为异物）被人遗弃的哭声，另一次是得知伊克美弗纳（来自另一个村庄，在恩沃依埃家住了3年且叫奥贡喀沃父亲）被奥亲手砍死的事。这些事令恩沃依埃感到痛心而又困惑不解，而适时到来的基督教对恩沃依埃来说有如“久旱逢甘霖”，在他最后一次和他父亲发生激烈冲突后便毅然决然地投入新宗教的怀抱 。<br>第二类成员是在氏族村庄中地位低下的贱民、乞丐或其他一些混地不好的人。很其它村民相比，这些人无论是物质生活还是精神生活都低人一等。<br>这两类人是新宗教的忠实拥孬。</p>
-<h2 id="奥拥有自己的枪支，但是在后来跟白人的交锋中为什么不用枪，而是用砍刀？"><a href="#奥拥有自己的枪支，但是在后来跟白人的交锋中为什么不用枪，而是用砍刀？" class="headerlink" title="奥拥有自己的枪支，但是在后来跟白人的交锋中为什么不用枪，而是用砍刀？"></a>奥拥有自己的枪支，但是在后来跟白人的交锋中为什么不用枪，而是用砍刀？</h2><p>书中描写奥的两次用枪，第一次是奥在愤怒中向她妻子开了一枪（结果没打中），第二次是奥在参加同村人葬礼时枪走火误杀村民。从奥的这两次用枪不难看出，奥并不擅长用枪，也有可能他手中的枪本身质量也好不到哪里。而刀则不同，“他在战场上杀过五个人”，刀为他带来荣誉，是奥信赖的武器，他尚未意识到枪的巨大威力。</p>
-<h2 id="奥为什么要上吊自杀？"><a href="#奥为什么要上吊自杀？" class="headerlink" title="奥为什么要上吊自杀？"></a>奥为什么要上吊自杀？</h2><p>不得不说，奥上吊自杀这个结局是完全出乎我意料之外的。前文说奥是一个勇敢的战士，即使整个村庄都反对战斗，他也要为自己报仇雪恨——完全看不出任何上吊自杀的端倪。我唯一能想到的原因是，奥最终意识到敌我力量的悬殊，而他不想再连累自己的家人和朋友。</p>
-<h2 id="如果在白人来临是奥不是流亡在外，而是在自己村庄，故事会不会有不同的结果？"><a href="#如果在白人来临是奥不是流亡在外，而是在自己村庄，故事会不会有不同的结果？" class="headerlink" title="如果在白人来临是奥不是流亡在外，而是在自己村庄，故事会不会有不同的结果？"></a>如果在白人来临是奥不是流亡在外，而是在自己村庄，故事会不会有不同的结果？</h2><p>迷信落后的氏族在西方精良的火器，仁慈宽容的新宗教，现代医学与科技的进攻下土崩瓦解是是历史的必然，是大势所趋。假设白人势力在尚未站稳脚跟之前就遭到奥等人发动的进攻，那也只是暂时延缓白人势力的发展壮大，多死几个白人而已。</p>
-<h2 id="如果我是奥能让那个氏族社会保持原样吗？如何做？"><a href="#如果我是奥能让那个氏族社会保持原样吗？如何做？" class="headerlink" title="如果我是奥能让那个氏族社会保持原样吗？如何做？"></a>如果我是奥能让那个氏族社会保持原样吗？如何做？</h2><p>如果自己和奥一样，是土生土长的伊博人，那我多半也跟他一样，会试图武力驱逐外来势力。因为自己付出毕生努力，眼看就要实现的人生目标就要毁于一旦，换做谁都不会甘心的。</p>
-<p>如果自己是穿越到那个时代，并且带着现代人的知识，那情况自然有所不同。第一个思路还是和奥一样，维护旧社会，但考虑到敌人武器的精良，不能直接对抗，只守不攻。这又有几种可能，首先寻找易守难攻可做屏障的天然地理，可惜他们似乎没有，那就只能构建足以抵挡殖民者的入侵的防御工事，建立一个坚不可摧的围墙，把氏族包围起来，需外界断绝往来。但这不是一朝一夕能完成的，即使成为现实，这样自我封闭的村庄相比也难以持久。</p>
-<p>另一条路是合作，但这需要相当高外交手腕，搞不好变成压迫本族人的傀儡，搞得好多少能给本族人带来一些福祉。这条路似乎是更值得一试。</p>
-<h2 id="本书价值"><a href="#本书价值" class="headerlink" title="本书价值"></a>本书价值</h2><ol>
-<li><p>作者在书中记录了非洲氏族社会的风俗习惯，宗教信仰，人们生活方式，寓言故事，神话传说，格言习语。在欧洲殖民文化和现代科技的强烈冲击下，如今这些内容或许只有当地少数还活着的老人依稀有印象。所以，这是作者对世界文化的贡献！</p>
-</li>
-<li><p>作者成功塑造了奥贡喀沃这个人物形象。当外部世界发生翻天覆地的变化时，奥贡喀沃没有考虑如何适应新环境，而是试图通过推翻新势力以便维护自己的旧势力。而他所采用的方法又是只有在就世界才行得通那套，因此，他的悲剧是不可避免的。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">书籍</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/09/04/10005/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-10006" class="article article-type-post  article-index" itemscope="" itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/09/10006/">《叔本华：怎样读书才有效》读后感</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/09/10006/" class="archive-article-date">
-  	<time datetime="2018-08-09T14:18:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>叔本华在《怎样读书才有效》一文写过这样一段话：</p>
-<blockquote>
-<p>人生是痛苦的，造成痛苦的根源在于意志而不在于理智，意志的本质就是盲目的欲望和不可遏止的冲动。当欲望不被满足，人会感到痛苦；当欲望得到了满足，目标即刻丧失，人便陷入无聊之境。因此，人生就像钟摆，总是在痛苦和无聊之间来回摆荡。</p>
-</blockquote>
-<p>我认为叔本华的这番话是有一定道理的，但也有些片面。</p>
-<p>我们来分析一下这段话。首先叔本华一上来就说“人生是痛苦的”，原因是人总有欲望不被满足——作为一名悲观主义者，说出这样的话实在没什么好奇怪的。那么，如何解除这种痛苦呢，我想唯一的办法，就是设法让欲望得到满足。但叔本华又说，那会带来另一个问题：让人陷入无聊之境。满足欲望后一定会无聊吗？为了回答这个问题，我回顾了自己以前的经历，得到的答案是肯定的。即使满足欲望后不会马上无聊，但因其带来的幸福与快乐也不会持续太久。有研究发现，很少有经历能对我们产生超过3个月的影响。当好事来临时，我们会庆祝一阵，然后冷静下来。有诗为证，苏轼的《庐山烟雨》：</p>
-<blockquote>
-<p>庐山烟雨浙江潮，未到千般恨不消。<br>到得还来别无事，庐山烟雨浙江潮。</p>
-</blockquote>
-<p>看来，欲望是个坏东西，不是让人痛苦，就是让人无聊，这在古今中外似乎已达成共识。然而，叔本华的话虽没错，但不完整。</p>
-<p>一来，他过于强调结果，忽视过程。事实上，单从时间跨度来讲，过程远比结果更重要，人生这座钟摆，离开一端的痛苦抵达另一端的无聊之前，中间势必要有一段波澜起伏的经历。</p>
-<p>二来，他过于过于强调痛苦，而忽视其他感情。首先，当一个人追求某种东西时，除了感到痛苦，同时也会有成就感，只要他坚信自己的所做所为是有意义的。当他不断地取得进步，离目标愈来愈近，还有持续不断地加深其满足感。其次，假设一个人从事工作碰巧是自己的兴趣所在，那更要另当别论，这种人做事情可能连目标都没有，抑或有目标但并不关心是否真正实现，因为他在做这件事本身就给他带来莫大的快乐，不但不会无聊，更不会有痛苦。</p>
-<p>我记得大学时有位哲学老师说，叔本华虽然是对的，但不建议像他那样想，否则生活会变得很无趣。</p>
-<blockquote>
-<p>恰如身体只能吸收同性质的东西，任何读书人也只能记住他感兴趣的东西，也就是与其思想体系或目的相合之物。任何人当然都有自己的目的。然而，类似思想体系这样的东西绝非任何人都具备。缺乏独特的思想体系之人无论对什么都不会产生客观的兴趣，因此，他们读书必定是徒劳无功，毫无心得。</p>
-</blockquote>
-<p>怎么理解叔本华这段话？既然任何人只能吸收与其思想体系或目的相合之物，那么反过来说，一个人，必须要先建立思想体系或抱持某种目的，读书才能有所心得，否则就会徒劳无功。叔本华在这里实际上告诉我们两条学有所成的路径，一是先建立自己独特的思想体系，然后不断地往上添砖加瓦。然而正如叔本华自己所指出的“类似思想体系这样的东西绝非任何人都具备”，这条路似乎只适合那些已经学有所成的走。幸好，还有第二条路，抱持某种目的。这似乎是不言自明的—任何人读书都有自己的目的。然而事实并非如此，很多人（包括我自己在内）并不清楚自己读书的目的，至少有时不那么明确。以下是有关学习的几种常见误区：</p>
-<ul>
-<li>盲目听从某些所谓专家或大牛建议，却浑然自己当前的水平；当然不是说他们推荐的书不好，我这里想表达的是即使一个领域的经典著作，也不是人人都适合阅读。</li>
-<li>不筛选可用的学习资源，来者不拒。结果造成，所学的并不是自己想要的，或者重复学自己已经掌握的资料。</li>
-<li>没有明确的学习目标，没有计划也没有回顾，浑浑噩噩。</li>
-<li>误以为知识越多越好。从某种角度讲，知识确实越多越好，但考虑到人的记忆力和注意力有限，如果经过自己大脑的思考消化，什么知识都学，最终只会造成“劣币驱逐良币”。</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">书籍</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">叔本华</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/09/10006/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -927,14 +1212,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">叔本华</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">唐诗</a>
               </li>
              
@@ -955,7 +1232,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">幽默与笑话</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">阅读</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">叔本华</a>
               </li>
             
             <div class="clearfix"></div>
