@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yiyo.io">
-  <title>Tag: 幽默与笑话 | 益友</title>
+  <title>JavaScript的this指针原理 | 益友</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="益友">
-<meta property="og:url" content="https://yiyo.io/tags/幽默与笑话/index.html">
+  <meta name="description" content="JavaScript函数中的this，它的基本含义和其它语言（如Java）一样，就是指向函数所属对象的引用。如下例子所示： name = &amp;quot;global name&amp;quot;;  var person = {     name: &amp;quot;张三&amp;quot;,     printName: function () {         alert(this.name);     } }">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的this指针原理">
+<meta property="og:url" content="https://yiyo.io/2019/03/05/10024/index.html">
 <meta property="og:site_name" content="益友">
+<meta property="og:description" content="JavaScript函数中的this，它的基本含义和其它语言（如Java）一样，就是指向函数所属对象的引用。如下例子所示： name = &amp;quot;global name&amp;quot;;  var person = {     name: &amp;quot;张三&amp;quot;,     printName: function () {         alert(this.name);     } }">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://yiyo.io/2019/03/05/10024/execution_context.png">
+<meta property="og:image" content="https://yiyo.io/2019/03/05/10024/示意图.jpg">
+<meta property="og:updated_time" content="2019-03-04T22:38:39.395Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="益友">
+<meta name="twitter:title" content="JavaScript的this指针原理">
+<meta name="twitter:description" content="JavaScript函数中的this，它的基本含义和其它语言（如Java）一样，就是指向函数所属对象的引用。如下例子所示： name = &amp;quot;global name&amp;quot;;  var person = {     name: &amp;quot;张三&amp;quot;,     printName: function () {         alert(this.name);     } }">
+<meta name="twitter:image" content="https://yiyo.io/2019/03/05/10024/execution_context.png">
   
     <link rel="alternative" href="/atom.xml" title="益友" type="application/atom+xml">
   
@@ -134,60 +141,187 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-10024" class="article article-type-post " itemscope="" itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/01/02/10018/" class="archive-article-date">
-  	<time datetime="2019-01-01T21:32:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/01/02/10018/">错别字</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript的this指针原理
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">幽默与笑话</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        <a href="/2019/03/05/10024/" class="archive-article-date">
+  	<time datetime="2019-03-04T22:38:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JavaScript函数中的this，它的基本含义和其它语言（如Java）一样，就是指向函数所属对象的引用。如下例子所示：</p>
+<pre><code>name = &quot;global name&quot;;
 
-          
+var person = {
+    name: &quot;张三&quot;,
+    printName: function () {
+        alert(this.name);
+    }
+}
 
+person.printName(); // 张三
+</code></pre><p>如我们所愿，this.name拿到了person.name的值”张三”，而不是global域中的name。但是，JavaScript中的this和其它语言又不太一样，它的值不是固定的，即使是在同一个函数内部，this会随调用该函数的方式变化而变化。我们把调用函数的代码稍微改一下，其它不变：</p>
+<pre><code>// person.printName();
+var foo = person.printName;
+foo();  // global name
+</code></pre><p>由于函数名本质上就是一个指向函数对象的一个指针，上述代码先把person.printName赋给一个变量foo，再通过该变量调用函数。然而，这样看似和前一次等效的操作，实际却得到不同的结果——这次this.name拿到的是[[Global]]中的name。如何理解造成上述结果？这可能要从JavaScript调用函数的机制说起。</p>
+<p>JavaScript引擎在调用一个函数时（前），会先建立并初始化一个执行环境(Excecution context)，这个执行环境至少包含3部分数据：Variable object，Scope chain和thisValue。如下图所示：<br><img src="/2019/03/05/10024/execution_context.png"><br>其中，thisValue保存的值就是在真正执行函数时this实际的值。也就是说，JavaScript中this值它是在每次调用函数的前决定的，而且在整个执行函数期间this值保持不变。</p>
+<p>接下来的问题是，JavaScript引擎是如何给thisValue赋值的？可以由用户指定要传的thisValue，也可以由JavaScript引擎。先介绍一种很典型的方式，用户使用call指定thisValue。看如下例子：</p>
+<pre><code>name = &quot;global name&quot;;
+
+var person = {
+    name: &quot;张三&quot;,
+    printName: function () {
+        alert(this.name);
+    }
+}
+
+var anotherPerson = {
+    name: &quot;李四&quot;
+}
+
+person.printName.call(anotherPerson);   // 李四
+</code></pre><p>call方式传入的第一个参数<code>anotherPerson</code>将作为thisValue，所以上述代码最后将显示李四。那如果我们来看一下如果传入undefined会怎么样，会报错吗？</p>
+<pre><code>person.pirntName.call(undefined);   // global name
+</code></pre><p>结果有点出乎意料，代码并没有报错，而是输出<code>global name</code>，这是为什么？原来JavaScript出于某些代码兼容方面问题的考虑，当传给函数的thisValue是undefined，则自动改为[[Global]]对象。</p>
+<p>我们回头看来看一开始的例子：</p>
+<pre><code>person.printName(); // 张三
+</code></pre><p>这个等效地使用call实现就是：</p>
+<pre><code>person.printName.call(person); // 张三
+</code></pre><p>当然，JavaScript引擎执行上述代码并不真的按上述方法先转换成call再执行，而是使用另一套机制。实际上，在解析<code>printName</code>时，会创建了一个临时的<a href="https://tc39.github.io/ecma262/#sec-reference-specification-type" target="_blank" rel="noopener">Reference</a>。该Reference类型至少保存3种信息，分别是base value，referenced name和strict flag。其中base value用于指示该reference绑定到哪个对象，referenced name是一个字符串（本例即为”printName”），strict flat用于标记当前是否<code>use strict</code>。另外，如果对该refrence执行[[GetValue]]，则返回引用的值（本例即为printName对应的函数对象），如下图所示：</p>
+<img src="/2019/03/05/10024/示意图.jpg">
+<p>然后，当解析到函数调用符时——即<code>()</code>——先对该Reference执行GetValue获取函数对象，并把该其base value赋给<code>Excecution context</code>的thisValue。</p>
+<p>关于上述临时reference有一点需要注意的是，它的生存期极短，仅存在于获取对象属性的瞬间（除了句点操作符，使用<code>[]</code>获取属性当然也可以），一旦执行其它操作，该reference就降级为其GetValue后的值。比如：</p>
+<pre><code>var foo = person.printName;
+</code></pre><p>这行代码把一个<code>person.printName</code>赋值给变量foo，实际上就是把上述的reference[[GetValue]]后再赋值给foo，这就丢失了base value信息，因此在其后执行<code>foo()</code>时thisValue只能传递undefined，最后JavaScript引擎又自动把undefined变为[[Global]]对象。我再举几个例子说明上述reference的base value丢失问题：</p>
+<pre><code>(person.printName = person.printName)();    // global name
+</code></pre><p>该例中把<code>person.printName</code>赋值给<code>person.printName</code>看似什么都没发生，但实际上，赋值操作会先取右操作数的值(此例取值后即为函数对象，不是reference)，将该值赋值给左操作数，让后整个表达式再返回该值，最后对执行该函数对象时也是丢失了base value。当然，如果再次调用<code>person.printName();</code>又会输出person中的张三了：</p>
+<pre><code>(person.printName = person.printName)();    // global name
+person.printName(); // 张三，这次会重新创建reference
+</code></pre><p>明白了上述道理，以下两个例子过程类似，留待读者自行分析。</p>
+<pre><code>(person.printName, person.printName)(); // global name
+(false || person.printName)(); // global name
+</code></pre><p>参考资料：<br><a href="http://dmitrysoshnikov.com/ecmascript/chapter-3-this/" target="_blank" rel="noopener">ECMA-262-3 in detail. Chapter 3. This.</a><br><a href="https://javascript.info/object-methods" target="_blank" rel="noopener">Object methods, “this”</a><br><a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/#execution-context" target="_blank" rel="noopener">Execution context</a><br><a href="http://es5.github.io/#x8.7" target="_blank" rel="noopener">The Reference Specification Type</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yiyo.io/2019/03/05/10024/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/02/25/10023/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTML入门教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -210,9 +344,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
