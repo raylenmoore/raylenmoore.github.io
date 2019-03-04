@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://yiyo.io/2019/02/25/10023/example_table_with_head.png">
 <meta property="og:image" content="https://yiyo.io/2019/02/25/10023/html5.png">
 <meta property="og:image" content="https://yiyo.io/2019/02/25/10023/w3c_validator.png">
-<meta property="og:updated_time" content="2019-02-24T22:09:54.000Z">
+<meta property="og:updated_time" content="2019-02-27T00:18:12.024Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML入门教程">
 <meta name="twitter:description" content="HTML名字的含义HTML是HyperText Markup Language的首字母缩写，意思是超文本标记语言。我将从名字入手，先介绍这门标记语言，然后再它的超文本特性。 先建一个文本文档，用记事本输入以下内容： Hello HTML 我们把扩展名改为.html，用浏览器打开显示如下： 看，我们的第一个html文档就写好了。你可能有疑问，这不过是一个普通的文本文档，改了扩展名而已。没错，这还不">
@@ -217,7 +217,7 @@ HTML
 <pre><code>&lt;a href=&quot;./1.html&quot;&gt;跳转到同级目录中的1.html&lt;/a&gt;
 </code></pre><p>如果目标文档位于当前html文档的上级目录下时，可以写为：</p>
 <pre><code>&lt;a href=&quot;../2.html&quot;&gt;跳转到上级目录中的2.html&lt;/a&gt;
-</code></pre><h1 id="图像让网页更好看"><a href="#图像让网页更好看" class="headerlink" title="图像让网页更好看"></a>图像让网页更好看</h1><p>图像是现代网页不可或缺的组成元素，在HTML中要显示一个图像语法很简单，如下：</p>
+</code></pre><h2 id="图像让网页更好看"><a href="#图像让网页更好看" class="headerlink" title="图像让网页更好看"></a>图像让网页更好看</h2><p>图像是现代网页不可或缺的组成元素，在HTML中要显示一个图像语法很简单，如下：</p>
 <pre><code>&lt;img src=&quot;my.jpg&quot;&gt;
 </code></pre><p><code>&lt;img&gt;</code>元素最重要的属性是src，它是要显示图像文件的路径。和之前<code>&lt;a&gt;</code>元素的href属性一样，src属性也支持三种路径寻址方式。但<code>&lt;img&gt;</code>元素和<code>&lt;a&gt;</code>元素有一点较大的区别是，前者是一个独立的图片文件，浏览器要异步下载并在当前网页中显示，而由于各种原因，现在这个图片文件可能耗时很长，甚至下载失败（比如目标文件不存在），这时，我们最好提供一个alt属性，以便当图片不存在时提供替换内容（具体展示可能因浏览器不同而不同）。另外，大多数浏览器还支持title，它的作用和<code>&lt;a&gt;</code>元素的title属性类似，即在鼠标光标移到图像上时显示提示文字，可用于一些重要的图片，例如：</p>
 <pre><code>&lt;img src=&quot;logo图片路径&quot; alt=&quot;logo&quot; title=&quot;首页&quot; /&gt;
@@ -270,7 +270,7 @@ HTML
 &lt;/form&gt;
 </code></pre><p><code>&lt;form&gt;</code>有两个属性，一个是action，用于标识处理该表单的后台服务脚本，另一个是method，用于指定提交方式。method有两个可选值，分别是GET和POST，前者把表单数据作为请求url的参数提交到服务器，每次提交GET请求后会在浏览器历史记录中增加一条；后者把表单数据封装在http数据包中发送给服务器，它不会在浏览器中留下历史记录，适用于包含大数据量的表单请求，或包含有私密信息的请求。</p>
 <p>表单中的input表示各种输入控件，可输入文本(text)，单选框(radio)，复选框(checkbox)等，不同的输入控件类型由intpu的type属性指定。intput的value属性是控件值。还有一种type为submit的特殊输入控件，它是一个按钮，点击该按钮会提交表单数据到指定的服务器(有<code>&lt;form&gt;</code>的action决定)。</p>
-<h1 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h1><p>前面我们已经介绍了html语言的基础知识，常见的标记。在html5中这些标记仍然有效，换句话说，html5是向后兼容的，然而，html5确实新增了一些新标记，以便更方便地标记页面内容。</p>
+<h2 id="html5"><a href="#html5" class="headerlink" title="html5"></a>html5</h2><p>前面我们已经介绍了html语言的基础知识，常见的标记。在html5中这些标记仍然有效，换句话说，html5是向后兼容的，然而，html5确实新增了一些新标记，以便更方便地标记页面内容。</p>
 <img src="/2019/02/25/10023/html5.png" title="html5结构">
 <p>上图是一个常见的网页结构，其中上边是一个<code>header</code>元素，表示它是一个头部，通常包含网站logo及导航条，底部是一个<code>footer</code>元素，中间部分由两个<code>section</code>加一个侧边栏(<code>aside</code>)组成。其中，main section有包含两个<code>article</code>。在html5之前，要借助<code>div</code>实现这些不同区域的划分。然而，分别使用合适的元素标注不同区域的逻辑含义比清一色使用<code>div</code>更加清晰明了。这不但有助于web开发者的维护，也有助于浏览器和搜索引擎的优化。</p>
 <p>这里要补充说明的是，html5中<code>header</code>元素区别于和<code>head</code>元素。<code>header</code>是<code>&lt;body&gt;</code>中的子元素，标识某一块内容为头部，<code>head</code>元素是<code>html</code>的子元素，用于存放当前html文档一些元信息；在整个html文档中，<code>header</code>不要求唯一，你甚至可以给某一局部区域添加<code>header</code>，但<code>head</code>元素必须唯一。</p>
@@ -520,6 +520,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">叔本华</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">唐诗</a>
               </li>
              
@@ -540,19 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">幽默与笑话</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">阅读</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">叔本华</a>
               </li>
             
             <div class="clearfix"></div>
